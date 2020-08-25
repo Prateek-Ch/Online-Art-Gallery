@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- CSS include -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,900|Ubuntu&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/ac060bbd11.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <%- include('partials/header'); -%>
+     
+
+    <!-- Searchbox -->
+            <section id="searchbar">
+              <div class="search__container">
+                <p class="search__title">
+                  Go ahead and search
+                </p>
+                  <input class="search__input" type="text" placeholder="Search">
+                  <i class="fas fa-search"></i>
+              </div>
+
+            </section>
+
+        <%- include('partials/framework'); -%>
+
+      <!-- jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- javascript -->
+      <script src="index.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+<!-- <%= avatar %>  For Dynamic Profile Images -->
+<!-- <%= user.local.name %> For Dynamic Name
+<%= user.local.email %> For Dynamic Email -->
+  <!-- <h1><%- title %></h1>  For Dynamic Profile -->

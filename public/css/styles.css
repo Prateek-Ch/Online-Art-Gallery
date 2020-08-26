@@ -55,3 +55,13 @@ input[type="text"], input[type="password"], textarea, select {
   box-shadow: 0 5px 15px rgba(0,0,0,.5);
 
 }
+
+
+/* Signup Signin boxes */
+.form-control{
+  background-color: #e4e3e3;
+  border-right-style: none;
+  border-top-style: none;
+  border-left-style: none;
+  width: 504px;
+}

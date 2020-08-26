@@ -16,7 +16,7 @@ var flash = require('connect-flash');
 const app = express();
 
 mongoose.connect('mongodb://localhost:27017/paints',{ useNewUrlParser: true, useUnifiedTopology: true});
-require('./config/passport');
+require('./config/passport')(passport);
 
 app.set('view engine', 'ejs');
 

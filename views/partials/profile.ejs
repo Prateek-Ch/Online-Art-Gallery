@@ -1,7 +1,7 @@
 <!DOCTYPE html>
       <html>
       <head>
-          <title></title>
+          <title>Dashboard</title>
       </head>
       <body>
           <div class="container">
@@ -17,8 +17,45 @@
                         <strong>Name</strong>: User
                         <br><strong>Email</strong>: asdfghl@gmail.com
                     </p>
-                    <a href="/logout" class="btn btn-dark">Logout</a>
                   </div>
-              </div>
+                  <% if(products){ %>
+                  <div class="card-block col-lg-4">
+                    <h4 class="card-header">Your Cart</h4>
+                    <p class="card-text">
+                        <ul class="list-group">
+                          <% products.forEach( p =>{ %>
+                          <li class="list-group-item">
+                            <span class="badge badge-secondary"><%-p.qty %></span>
+                            <strong><%-p.item.title %></strong>
+                            <span class="label label-secondary"><%-p.price %></span>
+                            <div class="btn-group">
+                              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit <span class="caret"></span> </button>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Add One</a>
+                                <a class="dropdown-item" href="#">Remove One</a>
+                                <a class="dropdown-item" href="#">Remove All</a>
+                              </div>
+                            </div>
+                          </p>
+                        </li>
+                      </ul>
+                      <% }) %>
+                      <div class="total">
+                        <br><br><br>
+                        <strong>Total Price: Rs.<%-totalPrice %></strong>
+                      </div>
+                            <div class="checkout">
+                              <a href="/dashboard/checkout" type="button" class="btn btn-secondary">Checkout</a>
+                            </div>
+                          </div>
+
+                        <% } else { %>
+                          <div class="card-block col-lg-4">
+                            <h4 class="card-header">Your Cart</h4>
+                            <p class = "card-text">
+                               <h4>Your Cart is Empty!</h4>
+                            </p>
+                      <% } %>
+                   </div>
             </div>
       </body>

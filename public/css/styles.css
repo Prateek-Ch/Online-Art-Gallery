@@ -65,3 +65,12 @@ input[type="text"], input[type="password"], textarea, select {
   border-left-style: none;
   width: 504px;
 }
+
+/* Shopping Cart */
+.fa-shopping-cart{
+   padding-right: 10px;
+}
+
+.list-group-item{
+  background: #e4e3e3;
+}

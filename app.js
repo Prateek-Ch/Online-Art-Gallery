@@ -5,15 +5,22 @@ const mongoose = require("mongoose");
 const ejs = require("ejs");
 var LocalStrategy = require("passport-local");
 
+var cookieParser = require('cookie-parser');
+const app = express();
+
 //Setting up various routes
 var homepage = require('./routes/index');
 var dashboard = require('./routes/dashboard');
 var about = require('./routes/about');
+var userRoutes = require('./routes/user');
+
+
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var validator = require('express-validator');
+var MongoStore = require('connect-mongo')(session)
 
-const app = express();
 
 mongoose.connect('mongodb://localhost:27017/paints',{ useNewUrlParser: true, useUnifiedTopology: true});
 require('./config/passport')(passport);
@@ -21,18 +28,37 @@ require('./config/passport')(passport);
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(validator());
+app.use(cookieParser());
 app.use(express.static("public"));
-app.use(session({secret: 'thisismysecret',resave: false, saveUninitialized:false}));
+
+app.use(session({secret: 'thisismysecret',
+resave: false,
+saveUninitialized:false,
+store: new MongoStore({ mongooseConnection: mongoose.connection})
+}));
+
+app.use(function(req, res, next) {
+   req.session.cookie.maxAge = 180 * 60 * 1000; //Change session expiration milliseconds
+    next();
+});
+
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/',homepage);
+
+//TO get this login variable to be used in views
+app.use(function(req,res,next){
+  res.locals.login = req.isAuthenticated();  //Will be either true or false
+  res.locals.session = req.session;
+  next();
+})
+
+
 app.use('/Dashboard',dashboard);
 app.use('/About',about);
-
-
-
+app.use('/user',userRoutes);
+app.use('/',homepage);
 
 
 app.listen(3000, function() {

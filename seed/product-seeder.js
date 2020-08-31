@@ -9,7 +9,7 @@ var products = [
   new Product({
   imagePath:'https://i.pinimg.com/originals/1c/c1/d9/1cc1d9be2d88443f1a4bb706c776dfe2.jpg',
   title:"goodtitle",
-  description:"Hello to our lil description",
+  description:"Hello to our lil description.............",
   price:"50",
 }),
 

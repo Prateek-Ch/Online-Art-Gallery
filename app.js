@@ -1,19 +1,26 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+
 // const mongoose = require("mongoose");
 const ejs = require("ejs");
 var LocalStrategy = require("passport-local");
 
 var cookieParser = require('cookie-parser');
 const app = express();
+//Integrating Stripe here
+var Publishable_Key = 'Your_Publishable_Key'
+var Secret_Key = 'Your_Secret_Key'
 
+const stripe = require('stripe')(Secret_Key)
+//const link = await stripe.accounts.createLoginLink('{{CONNECTED_STRIPE_ACCOUNT_ID}}');
 //Setting up various routes
 var homepage = require('./routes/index');
 var dashboard = require('./routes/dashboard');
 var about = require('./routes/about');
 var userRoutes = require('./routes/user');
 
+//var Checkout = require('./routes')
 
 var session = require('express-session');
 var passport = require('passport');
@@ -25,7 +32,47 @@ var MongoStore = require('connect-mongo')(session)
 mongoose.connect('mongodb://localhost:27017/paints',{ useNewUrlParser: true, useUnifiedTopology: true});
 require('./config/passport')(passport);
 
+// View Engine Setup 
+//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+//app.get('/', function(req, res){ 
+    //res.render('Home', { 
+       //key: Publishable_Key 
+    //}) 
+//})
+app.post('/payment', function(req, res){ 
+  
+    // Moreover you can take more details from user 
+    // like Address, Name, etc from form 
+    stripe.customers.create({ 
+        email: req.body.stripeEmail, 
+        source: req.body.stripeToken, 
+        name: 'Gourav Hammad', 
+        address: { 
+            line1: 'TC 9/4 Old MES colony', 
+            postal_code: '452331', 
+            city: 'Indore', 
+            state: 'Madhya Pradesh', 
+            country: 'India', 
+        } 
+    }) 
+    .then((customer) => { 
+  
+        return stripe.charges.create({ 
+            amount: 2500,     // Charging Rs 25 
+            description: 'Web Development Product', 
+            currency: 'INR', 
+            customer: customer.id 
+        }); 
+    }) 
+    .then((charge) => { 
+        res.send("Success")  // If no error occurs 
+    }) 
+    .catch((err) => { 
+        res.send(err)       // If some error occurs 
+    }); 
+})
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(validator());
@@ -59,6 +106,7 @@ app.use('/Dashboard',dashboard);
 app.use('/About',about);
 app.use('/user',userRoutes);
 app.use('/',homepage);
+//app.use('/Checkout',Checkout)
 
 
 app.listen(3000, function() {

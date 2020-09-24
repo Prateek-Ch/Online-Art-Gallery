@@ -8,11 +8,17 @@ var LocalStrategy = require("passport-local");
 var cookieParser = require('cookie-parser');
 const app = express();
 
+//Integrating Stripe here
+var Publishable_Key = 'Your_Publishable_Key'
+
+const stripe = require('stripe');
+
 //Setting up various routes
 var homepage = require('./routes/index');
 var dashboard = require('./routes/dashboard');
 var about = require('./routes/about');
 var userRoutes = require('./routes/user');
+var blog = require('./routes/blog');
 
 
 var session = require('express-session');
@@ -57,6 +63,7 @@ app.use(function(req,res,next){
 
 app.use('/Dashboard',dashboard);
 app.use('/About',about);
+app.use('/Blog',blog);
 app.use('/user',userRoutes);
 app.use('/',homepage);
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>About</title>
+        <!--Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- CSS include -->
+        <link rel="stylesheet" href="css/styles.css">
+        <style>
+          h1{
+            padding-left: 500px;
+            padding-top: 20px;
+            margin-bottom: 30px;
+          }
+          .btn{
+            position:fixed;
+            bottom: 0px;
+            text-decoration: none;
+          }
+          a:not([href]):hover{
+            color: white;
+          }
+        </style>
+  </head>
+  <body>
+      <%- include('partials/header'); -%>
+
+      <h1>Our Blogs!</h1>
+      <h3>Here are our latest Blogs!</h3>
+
+  <%  posts.forEach(function(post){ %>
+    <div class="container">
+      <div class="row">
+        <% for(var j=0; j<3; j++) { %>
+        <div class="col-sm-4 d-flex pb-3">
+              <div class="card card-inverse card-primary">
+                  <div class="card-block">
+                      <h3 class="card-title"><%=post.title%></h3>
+                      <p class="card-text"><%=post.content.substring(0, 100) + " ..."%></p>
+                      <a href="/blog/posts/<%=post._id%>">Read More</a>
+                  </div>
+              </div>
+          </div>
+          <% } %>
+      </div>
+    </div>
+    <% }) %>
+
+   <a href="/blog/compose" type="button" class="btn btn-secondary btn-lg btn-block" >Would you like to Post?</a>
+
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- CSS include -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      h1
+      {margin: 40px;
+        padding-left: 100px;
+      }
+
+      .form-control{
+         margin-bottom: 20px;
+         margin-left: 20px;
+      }
+      label{
+        margin-left:20px;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("partials/header"); -%>
+        <h1>Share Your Views</h1>
+        <form class="" action="/blog/compose" method="post">
+          <div class="form-group">
+            <label><strong>Title</strong></label>
+            <input class="form-control" type="text" name="postTitle">
+            <label><strong>Post</strong></label>
+            <textarea class="form-control" name="postBody" rows="5" cols="20"></textarea>
+          </div>
+          <button class="btn btn-secondary" type="submit" name="button">Publish</button>
+        </form>
+
+  </body>
+</html>

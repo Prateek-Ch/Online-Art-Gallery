@@ -41,6 +41,23 @@ input[type="text"], input[type="password"], textarea, select {
   background-attachment: fixed;
 }
 
+.image:hover{
+color: #ff7a59;
+  border: #e6e6e6 solid 3px;
+  background:#fff;
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  width: 600px;
+  height: 650px;
+
+}
+
+.image:active{
+  border: solid 5px grey;
+
+}
+
 .painting{
   position: relative;
   box-shadow: 0 5px 15px rgba(0,0,0,.5);
@@ -74,3 +91,18 @@ input[type="text"], input[type="password"], textarea, select {
 .list-group-item{
   background: #e4e3e3;
 }
+
+
+/* About Us */
+#aboutus{
+         text-align: center;
+         }
+#box{
+     width:610px;
+     height:610px;
+     margin: auto;
+    background-color: #d2d6d4;
+   padding: 20px;
+   border-style: inset;
+    border-color: #cdd1cf;
+ }

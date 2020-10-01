@@ -3,15 +3,16 @@ var router = express.Router();
 
 var Cart = require('../models/cart');
 var Product = require('../models/product');
+var Order = require('../models/order');
 
 const stripe = require('stripe')('sk_test_51HU6ZPEwBXNHMSwOSsCuOCbeDAdILiSvcYy8IzwveP4nvw9zhw17BWNvjL6GF3lLipTTGx18RP3rdAZv54ZOucgN00EK6WJcKm');
 // TO GET Dashboard PAGE (this or app)
 router.get('/',function(req,res,next){
  if(!req.session.cart){
-   return res.render('Dashboard',{products: null});
+    return res.render('Dashboard',{products: null, name:req.user.name, email:req.user.email});
  }
  var cart = new Cart(req.session.cart);
- res.render('Dashboard',{products: cart.generateArray(), totalPrice: cart.totalPrice});
+ res.render('Dashboard',{products: cart.generateArray(), totalPrice: cart.totalPrice, name:req.user.name, email:req.user.email});
 });
 
 
@@ -38,14 +39,30 @@ router.get('/add-to-cart/:id', function(req,res){
   });
 });
 
+router.get('/reduce/:id',function(req,res){
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.reduceOne(productId);
+  req.session.cart = cart;
+  res.redirect('/Dashboard');
+})
+
+router.get('/removeAll/:id',function(req,res){
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.removeAll(productId);
+  req.session.cart = cart;
+  res.redirect('/Dashboard');
+})
+
 
 router.post('/charge', isLoggedIn, function(req, res, next) {
     if (!req.session.cart) {
-        return res.redirect('/shopping-cart');
+        return res.redirect('/');
     }
     var cart = new Cart(req.session.cart ? req.session.cart : {});
-
-    console.log(req.body);
     const amount = cart.totalPrice*100;
 
  stripe.customers.create({
@@ -58,9 +75,27 @@ router.post('/charge', isLoggedIn, function(req, res, next) {
    currency: 'inr',
    customer: customer.id
  }))
- .then(charge => res.redirect('/'));
-});
+  .then(charge =>
+   res.redirect('/')
+     );
 
+      var order = new Order({
+       user: req.user, //Tried from Passport
+       cart: cart,
+       phone:req.body.phone,
+       address: req.body.address,
+       address_two:req.body.address_two,
+       zip: req.body.zip,
+       email: req.body.email,
+       name: req.body.name,
+
+      });
+      order.save(function(err,result){
+         if(err) console.log(err);
+      });
+     req.session.cart = null;
+
+});
 
 
 module.exports = router;

@@ -6,16 +6,18 @@ var Post = require('../models/blogs');
 // TO GET About PAGE (this or app)
 blog.get("/", function(req, res){
   Post.find({}, function(err, posts){
-    res.render("Blog", {
-      posts: posts
-      });
+    var chunks = []
+    for(var i =0; i<posts.length;i+=3){
+      chunks.push(posts.slice(i,i+3));
+    }
+    res.render("Blog", { posts: chunks });
   });
 });
 
 
 blog.get('/compose', function(req,res){
   if(!req.isAuthenticated()){
-    return res.redirect('/');
+    return res.redirect('/user/signin');
   }
   res.render('Compose')
 });

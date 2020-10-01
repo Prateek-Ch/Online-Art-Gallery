@@ -38,6 +38,7 @@ input[type="text"], input[type="password"], textarea, select {
 .card-body,.card-header{
   position: relative;
   display: flex;
+  white-space: pre-wrap;
   background-attachment: fixed;
 }
 

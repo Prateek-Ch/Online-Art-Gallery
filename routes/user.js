@@ -11,7 +11,7 @@ router.get('/dashboard', isLoggedIn , function(req,res){
 })
 
 router.get('/user/logout',isLoggedIn ,function(req,res){
-  req.logout();
+  req.user = null;
   res.redirect('/');
 })
 

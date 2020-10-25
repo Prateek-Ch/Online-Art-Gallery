@@ -1,4 +1,3 @@
-
 const passport = require('passport');
 const User = require('../models/user');
 const LocalStrategy = require('passport-local').Strategy;
@@ -13,6 +12,7 @@ passport.deserializeUser((id, done) => {
         done(err, user);
     });
 });
+
 
 module.exports = function(passport){
   passport.use('local.signup', new LocalStrategy({
@@ -31,8 +31,11 @@ module.exports = function(passport){
 
           const newUser = new User();
           newUser.name = req.body.name;
+          newUser.phone = req.body.phone;
           newUser.email = req.body.email;
           newUser.password = newUser.encryptPassword(req.body.password);
+          newUser.description = req.body.artist_desc;
+          newUser.auth_id = 0;
 
           newUser.save((err) => {
                 if(err){
@@ -64,5 +67,6 @@ module.exports = function(passport){
               return done(null, user);
               });
           }));
+
 
 }

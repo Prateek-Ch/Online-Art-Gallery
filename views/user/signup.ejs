@@ -4,6 +4,9 @@
 <!-- CSS include -->
 <link rel="stylesheet" href="../css/styles.css">
 
+<!-- javascript -->
+<script src="index.js" charset="utf-8"></script>
+
 <body>
 <%- include('../partials/header') %>
 
@@ -26,6 +29,10 @@
               <input type="name" class="form-control" name="name">
             </div>
             <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" class="form-control" name="phone">
+            </div>
+            <div class="form-group">
               <label for="email">Email</label>
               <input type="email" class="form-control" name="email">
             </div>
@@ -33,6 +40,17 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" name="password">
             </div>
+            <!-- <div class="form-group">
+              Only Artists will be allowed to upload Paintings *
+                <input type="radio" name="type_of_user" value="artist">
+                <label for="artist">Artist</label><br>
+                <input type="radio" name="type_of_user" value="buyer">
+                <label for="buyer">Buyer</label><br>
+            </div> -->
+                <div class="form-group">
+                  <label for="artist_desc">Kindly add a Description if an Artist*</label>
+                  <textarea name="artist_desc" rows="4" cols="50"></textarea>
+                </div>
             <input type="hidden" name="_csrf" value="<%- csrfToken %>">
             <button type="submit" class="btn btn-dark">Register</button>
           </form>
@@ -40,20 +58,4 @@
         </div>
       </div>
     </div>
-
-    <div class="col-sm-4">
-      <div class="card social-block">
-        <div class="card-body">
-          <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
-            <i class="fab fa-google"></i>
-            Sign Up with Google
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
 </body>

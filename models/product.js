@@ -2,9 +2,13 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
-  imagePath: {type:String, required: true},
-  title: {type:String, required: true},
-  description: {type:String, required: true},
+	name: String,
+	desc: String,
+	img:
+	{
+		data: Buffer,
+		contentType: String
+	} ,
   price: {type:Number, required: true},
 });
 

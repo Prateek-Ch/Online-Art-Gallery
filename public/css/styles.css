@@ -4,13 +4,16 @@ body{
   color: #393e46;
 }
 
-
 .nav-item a:hover {
   border-bottom: 1px solid black;
 }
 
 /* SEARCH BAR */
-.search__input{
+.btn_search{
+  background-color: #e4e3e3;
+  border-style: none;
+}
+.search{
   border-width: thin;
   border-radius: 5%;
   border-right-style: none;
@@ -18,6 +21,10 @@ body{
   border-left-style: none;
   width: 504px;
   background-color:#e4e3e3;
+}
+
+.noSearch{
+  margin: 100px;
 }
 
 input[type="text"], input[type="password"], textarea, select {
@@ -84,6 +91,10 @@ color: #ff7a59;
   width: 504px;
 }
 
+.artist_desc{
+  background-color: #e4e3e3;
+  }
+
 /* Shopping Cart */
 .fa-shopping-cart{
    padding-right: 10px;
@@ -107,3 +118,16 @@ color: #ff7a59;
    border-style: inset;
     border-color: #cdd1cf;
  }
+
+
+/* Authy */
+.login-form {
+  margin-top: 10em;
+  text-align: center;
+  line-height: 2em;
+
+}
+
+.login-form input {
+  width: 180px;
+}

@@ -10,11 +10,17 @@ router.get('/dashboard', isLoggedIn , function(req,res){
   res.render('dashboard')
 })
 
-router.get('/user/logout',isLoggedIn ,function(req,res){
-  req.user = null;
-  res.redirect('/');
+router.get('/logout',isLoggedIn ,function(req,res){
+  req.session.destroy(function(err){
+        if(err){
+            console.log(err);
+        }
+        else
+        {
+            res.redirect('/');
+        };
 })
-
+})
 router.use('/', notLoggedIn, function(req,res,next){
   next();
 });
@@ -26,7 +32,7 @@ router.get('/signup',function(req,res,next){
 
 router.post('/signup', passport.authenticate('local.signup',{
   successRedirect: "/dashboard",
-  failureRedirect: "/user/signup",
+  failureRedirect: "/signup",
   failureFlash: true
 }));
 
@@ -36,10 +42,17 @@ router.get('/signin',function(req,res,next){
 });
 
 router.post('/signin', passport.authenticate('local.signin',{
-  successRedirect: "/dashboard",
-  failureRedirect: "/user/signin",
+  failureRedirect: "/signin",
   failureFlash: true
-}));
+}),(req,res)=>{
+  if(req.user.auth_id){
+    res.redirect('/otp');
+    return;
+  }
+  else res.redirect('/Dashboard');
+}
+
+);
 
 module.exports = router;
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- CSS include -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      h1
+      {margin: 40px;
+        padding-left: 100px;
+      }
+
+      .form-control{
+         margin-bottom: 20px;
+         margin-left: 20px;
+      }
+      label{
+        margin-left:20px;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("partials/header"); -%>
+    <h1>To Upload Image on mongoDB</h1>
+    <hr />
+    <div>
+      <form action="/dashboard/imagehandle" method="POST" enctype="multipart/form-data">
+        <div>
+          <label for="name">Image Title</label>
+          <input class="form-control"
+            type="text"
+            id="name"
+            placeholder="Name"
+            value=""
+            name="name"
+            required
+          />
+        </div>
+
+        <div>
+            <label for="name">Image price</label>
+            <input class="form-control"
+              type="number"
+              id="price"
+              placeholder="price"
+              value=""
+              name="price"
+              required
+            />
+          </div>
+        <div>
+          <label for="desc">Image Description</label>
+          <textarea class="form-control"
+            id="desc"
+            name="desc"
+            value=""
+            rows="2"
+            placeholder="Description"
+            required
+          >
+          </textarea>
+        </div>
+        <div>
+          <label for="image">Upload Image</label>
+          <input type="file" id="image" name="image" value="" required />
+        </div>
+        <center>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </center>
+      </form>
+    </div>
+  </body>
+</html>

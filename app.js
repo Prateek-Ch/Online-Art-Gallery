@@ -1,13 +1,16 @@
+require('dotenv').config();
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 // const mongoose = require("mongoose");
 const ejs = require("ejs");
-var LocalStrategy = require("passport-local");
+var LocalStrategy = require('passport-local');
 
 var cookieParser = require('cookie-parser');
 const app = express();
 
+const multer = require('multer');
 //Integrating Stripe here
 var Publishable_Key = 'Your_Publishable_Key'
 
@@ -19,7 +22,10 @@ var dashboard = require('./routes/dashboard');
 var about = require('./routes/about');
 var userRoutes = require('./routes/user');
 var blog = require('./routes/blog');
-
+// var auth = require('./routes/auth');
+var tfaregister = require('./routes/tfaregister');
+var tfaverify = require('./routes/tfaverify');
+var otp = require('./routes/otp');
 
 var session = require('express-session');
 var passport = require('passport');
@@ -28,7 +34,7 @@ var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session)
 
 
-mongoose.connect('mongodb://localhost:27017/paints',{ useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/paints',{ useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify:false});
 require('./config/passport')(passport);
 
 app.set('view engine', 'ejs');
@@ -43,6 +49,7 @@ resave: false,
 saveUninitialized:false,
 store: new MongoStore({ mongooseConnection: mongoose.connection})
 }));
+
 
 app.use(function(req, res, next) {
    req.session.cookie.maxAge = 180 * 60 * 1000; //Change session expiration milliseconds
@@ -65,6 +72,9 @@ app.use('/Dashboard',dashboard);
 app.use('/About',about);
 app.use('/Blog',blog);
 app.use('/user',userRoutes);
+app.use('/tfaregister',tfaregister);
+app.use('/tfaverify',tfaverify);
+app.use('/otp',otp);
 app.use('/',homepage);
 
 

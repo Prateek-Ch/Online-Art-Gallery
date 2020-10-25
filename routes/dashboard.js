@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require('express');
 var router = express.Router();
 
@@ -5,14 +7,35 @@ var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
 
-const stripe = require('stripe')('sk_test_51HU6ZPEwBXNHMSwOSsCuOCbeDAdILiSvcYy8IzwveP4nvw9zhw17BWNvjL6GF3lLipTTGx18RP3rdAZv54ZOucgN00EK6WJcKm');
+const stripe = require('stripe')(process.env.STRIPE_KEY);
+
+//IMAGE UPLOAD PART1 STARTS
+//step5
+var multer = require("multer");
+var fs = require("fs");
+var path = require("path");
+
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "routes/uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "-" + Date.now());
+  },
+});
+
+var upload = multer({ storage: storage });
+
+//step6
+var imgModel = require("../models/product.js");
+
 // TO GET Dashboard PAGE (this or app)
 router.get('/',function(req,res,next){
  if(!req.session.cart){
-    return res.render('Dashboard',{products: null, name:req.user.name, email:req.user.email});
+    return res.render('Dashboard',{products: null, name:req.user.name, email:req.user.email,phone:req.user.phone,description:req.user.description});
  }
  var cart = new Cart(req.session.cart);
- res.render('Dashboard',{products: cart.generateArray(), totalPrice: cart.totalPrice, name:req.user.name, email:req.user.email});
+ res.render('Dashboard',{products: cart.generateArray(), totalPrice: cart.totalPrice, name:req.user.name, email:req.user.email,phone:req.user.phone,description:req.user.description});
 });
 
 
@@ -36,6 +59,34 @@ router.get('/add-to-cart/:id', function(req,res){
    req.session.cart = cart;
    console.log(req.session.cart);
    res.redirect('/');
+  });
+});
+
+//IMAGE UPLOAD PART2 STARTS
+//image
+router.get('/upload',function(req,res){
+  res.render('upload');
+})
+
+router.post("/imagehandle", upload.single("image"), (req, res, next) => {
+  var obj = {
+    name: req.body.name,
+    desc: req.body.desc,
+    price: req.body.price,
+    img: {
+      data: fs.readFileSync(
+        path.join(__dirname + "/uploads/" + req.file.filename)
+      ),
+      contentType: "image/png",
+    },
+  };
+  imgModel.create(obj, (err, item) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // item.save();
+      res.redirect("/");
+    }
   });
 });
 

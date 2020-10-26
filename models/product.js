@@ -2,8 +2,12 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
-	name: String,
-	desc: String,
+	artist_name:{type:String, required: true},
+	artist_phone:{type:String, required: true},
+	artist_email:{type:String, required: true},
+	artist_description:{type:String, required: true},
+	title: {type:String, required: true},
+	desc: {type:String, required: true},
 	img:
 	{
 		data: Buffer,

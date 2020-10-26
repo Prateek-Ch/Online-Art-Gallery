@@ -11,10 +11,9 @@
     <div class="mainscreen col-lg-5">
       <div class="card">
         <div class="card-body painting">
-        <!-- <img class = "image" src="<%-p.imagePath %>" alt="DISPLAY IMAGE HERE"> -->
-        <img
-       src="data:image/<%=p.img.contentType%>;base64,
-     <%=p.img.data.toString('base64')%>"
+
+        <img src="data:image/<%=p.img.contentType%>;base64,
+<%=p.img.data.toString('base64')%>"
      />
         </div>
       </div>
@@ -27,11 +26,8 @@
         </div>
         <div class="card-body">
           <div class="card-text"><%-p.desc %></div>
-          <div class="card-text float-right">
-             <b>Price</b> Rs.<%-p.price %>
-       </div>
           </div>
-        <a href="/dashboard/add-to-cart/<%- p._id %>" class= "btn btn-secondary"> <i class="fas fa-shopping-cart"></i>Add to Cart</a>
+        <a href="/dashboard/add-to-cart/<%- p._id %>" class= "btn btn-secondary"> <i class="fas fa-shopping-cart"></i><b>Price</b> Rs.<%-p.price %> Add to Cart</a>
     </div>
     </div>
 
@@ -41,7 +37,10 @@
           <h3>About Artist</h3>
         </div>
         <div class="card-body">
-            Artist Description....
+            <%-p.artist_name %>
+            <%-p.artist_email %>
+            <%-p.artist_phone %>
+            <%-p.artist_description %>
         </div>
       </div>
     </div>

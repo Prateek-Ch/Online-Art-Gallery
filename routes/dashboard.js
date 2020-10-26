@@ -70,7 +70,11 @@ router.get('/upload',function(req,res){
 
 router.post("/imagehandle", upload.single("image"), (req, res, next) => {
   var obj = {
-    name: req.body.name,
+    artist_name:req.user.name,
+    artist_phone:req.user.phone,
+    artist_email:req.user.email,
+    artist_description:req.user.description,
+    title: req.body.title,
     desc: req.body.desc,
     price: req.body.price,
     img: {

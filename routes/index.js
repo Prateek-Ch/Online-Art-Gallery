@@ -14,7 +14,6 @@ if(req.query.search){
       if(data.length<1){
         noMatch = "No Painting with this name is found, please try again";
       }
-      res.json(data);
       res.render('Home',{products:data, noMatch:noMatch});
     }
     });

@@ -1,30 +1,87 @@
 body{
-  font-family: 'Montserrat', sans-serif;
-  background-color: #e4e3e3;
-  color: #393e46;
+  font-family: 'Open Sans', sans-serif;
+  background-image: url('pine.jpg');
+  color: white !important;
+  background-size: 100%;
+}
+.nav-link{
+  color:white !important;
 }
 
+.navbar-brand{
+  font-size: 30px;
+  font-weight: bold;
+  padding-left: 15px;
+}
+
+.upload{
+            position:fixed;
+            bottom: 150px;
+            width:20%;
+
+            align-items: center;
+            text-decoration: none;
+            left:800px;
+            background-color: #182752;
+            margin:0 auto;
+          }
+
+.dark-mode {
+  color: white;
+  background-image: url('https://i.pinimg.com/originals/5a/c2/2d/5ac22d35ca55b5e621b03f0015150ce3.jpg')
+}
 .nav-item a:hover {
   border-bottom: 1px solid black;
+  font-weight: bold;
+
+}
+.center{
+  margin:0 auto;
+  text-align: center;
+  margin-top: 100px;
+  padding: 50px;
 }
 
+.form-control{
+  margin:0 auto;
+  text-align: center;
+ 
+}
+.mode{
+  padding-left: 10px;
+  margin-left: 10px;
+}
 /* SEARCH BAR */
 .btn_search{
-  background-color: #e4e3e3;
   border-style: none;
+  background-color: rgba(255,255,255,.6);
+  border-radius: 20px;
+  height: 35px;
+  width: 35px;
 }
 .search{
-  border-width: thin;
-  border-radius: 5%;
+  height: 35px;
+  border-radius: 20px;
+  width: 504px;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.card-block{
+  background-color: rgba(0,0,0,0.5);
+}
+
+.search__input{
+  border-width: medium;
+  border-radius: 10%;
   border-right-style: none;
   border-top-style: none;
   border-left-style: none;
   width: 504px;
-  background-color:#e4e3e3;
+  background-color:transparent;
 }
 
-.noSearch{
-  margin: 100px;
+.search__title{
+  font-size: 25px;
 }
 
 input[type="text"], input[type="password"], textarea, select {
@@ -33,6 +90,7 @@ input[type="text"], input[type="password"], textarea, select {
 
 .search__container {
    margin-top: 30px;
+   margin-left: 30px;
 }
 
 .row{
@@ -40,29 +98,83 @@ input[type="text"], input[type="password"], textarea, select {
 }
 
 .card{
-  background-color: #e4e3e3;
+  background-color: transparent;
+  color:white;
 }
+
 .card-body,.card-header{
   position: relative;
   display: flex;
-  white-space: pre-wrap;
   background-attachment: fixed;
+  width: 100%;
+  white-space: pre-line;
+}
+/*
+.image:hover{
+  height: 602.5px;
+  width: 728.75px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin:-60px 0 0 -60px;
+  -webkit-animation:spin 4s linear infinite;
+  -moz-animation:spin 4s linear infinite;
+  animation:spin 4s linear;
+  }
+
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+      }
+    }
+  @-webkit-keyframes spin {
+    100%
+    {
+      -webkit-transform: rotate(360deg);
+      }
+    }
+  @keyframes spin {
+    100%
+    {
+      -webkit-transform: rotate(360deg);
+      transform:rotate(360deg);
+    }
+  }
+
+}*/
+.image{
+  height: 602.5px;
+  width: 708.75px;
+  box-shadow:inset 1px 1px 40px 0 rgba(0,0,0,.45);
+  border-bottom:2px solid #fff;
+  border-right:2px solid #fff;
+}
+.image:hover{
+  opacity: 0.5;
 }
 
-.image:hover{
-color: #ff7a59;
-  border: #e6e6e6 solid 3px;
-  background:#fff;
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-  width: 600px;
-  height: 650px;
+.overlay {
+  background:rgba(0,0,0,.75);
+  text-align:center;
+  padding:45px 0 66px 0;
+  opacity:0;
+  -webkit-transition: opacity .25s ease;
+  -moz-transition: opacity .25s ease;
+}
 
+.image:hover .overlay {
+  opacity:1;
+}
+
+.plus {
+  font-family:Helvetica;
+  font-weight:900;
+  color:rgba(255,255,255,.85);
+  font-size:96px;
 }
 
 .image:active{
-  border: solid 5px grey;
+  border: solid 10px grey;
 
 }
 
@@ -70,15 +182,17 @@ color: #ff7a59;
   position: relative;
   box-shadow: 0 5px 15px rgba(0,0,0,.5);
   overflow: hidden;
-  width: 500px;
-  height: 600px;
+   height: 602.5px;
+  width: 708.75px;
+  position: relative; 
+  padding: 0px;
+
 }
 
 .profile-picture{
   width: 300px;
   height: 300px;
   box-shadow: 0 5px 15px rgba(0,0,0,.5);
-
 }
 
 
@@ -91,43 +205,231 @@ color: #ff7a59;
   width: 504px;
 }
 
-.artist_desc{
-  background-color: #e4e3e3;
-  }
-
 /* Shopping Cart */
 .fa-shopping-cart{
    padding-right: 10px;
 }
 
 .list-group-item{
-  background: #e4e3e3;
+  background: black;
 }
 
 
 /* About Us */
 #aboutus{
          text-align: center;
+         font-weight: bold;
          }
 #box{
+    background-color:rgba(0,0,0,0.5);
+    font-size: larger;
      width:610px;
-     height:610px;
-     margin: auto;
-    background-color: #d2d6d4;
+     height:180px;
+     margin: 20px auto;
    padding: 20px;
-   border-style: inset;
+   /*border-style: inset;
     border-color: #cdd1cf;
+  */
  }
-
-
-/* Authy */
-.login-form {
-  margin-top: 10em;
-  text-align: center;
-  line-height: 2em;
-
+ body{
+  font-family: 'Lato', sans-serif;
+}
+.carousel-fade .carousel-inner .item {
+  opacity: 0;
+  transition-property: opacity;
 }
 
-.login-form input {
-  width: 180px;
+.carousel-fade .carousel-inner .active {
+  opacity: 1;
+}
+
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+
+.carousel-fade .carousel-control {
+  z-index: 2;
+}
+@media all and (transform-3d), (-webkit-transform-3d) {
+    .carousel-fade .carousel-inner > .item.next,
+    .carousel-fade .carousel-inner > .item.active.right {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.prev,
+    .carousel-fade .carousel-inner > .item.active.left
+    {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.next.left,
+    .carousel-fade .carousel-inner > .item.prev.right,
+    .carousel-fade .carousel-inner > .item.active
+    {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+}
+.carousel-caption {
+  text-shadow: 0 1px 4px rgba(0,0,0,.9);
+  font-size:17px
+}
+.carousel-caption h3 {
+  font-size: 30px;
+  font-family: 'Lato', sans-serif;
+}
+    html,
+    body,
+    .carousel,
+    .carousel-inner,
+    .carousel-inner .item {
+      height: 90%;
+  }
+  .item:nth-child(1) {
+  background: url('https://c4.wallpaperflare.com/wallpaper/27/345/197/night-los-angeles-bench-city-wallpaper-preview.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  }
+  .item:nth-child(2) {
+  background: url('https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  }
+  .item:nth-child(3) {
+  background: url('https://i.pinimg.com/originals/32/f9/7f/32f97fad29d9fde544856020234b0869.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  }
+  .item:nth-child(4) {
+  background: url('https://cdn11.bigcommerce.com/s-x49po/images/stencil/1280x1280/products/43339/58776/1571390056201_6D1F1BD8-CA91-4B86-AD0F-249681E867B0__71341.1571633277.jpg?c=2');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  }
+
+/* Styles the lightbox, removes it from sight and adds the fade-in transition */
+
+.lightbox-target {
+position: fixed;
+top: -100%;
+width: 100%;
+background: rgba(0,0,0,.7);
+width: 100%;
+opacity: 0;
+-webkit-transition: opacity .5s ease-in-out;
+-moz-transition: opacity .5s ease-in-out;
+-o-transition: opacity .5s ease-in-out;
+transition: opacity .5s ease-in-out;
+overflow: hidden;
+}
+
+/* Styles the lightbox image, centers it vertically and horizontally, adds the zoom-in transition and makes it responsive using a combination of margin and absolute positioning */
+
+.lightbox-target img {
+margin: auto;
+position: absolute;
+top: 0;
+left:0;
+right:0;
+bottom: 0;
+max-height: 0%;
+max-width: 0%;
+border: 3px solid white;
+box-shadow: 0px 0px 8px rgba(0,0,0,.3);
+box-sizing: border-box;
+-webkit-transition: .5s ease-in-out;
+-moz-transition: .5s ease-in-out;
+-o-transition: .5s ease-in-out;
+transition: .5s ease-in-out;
+}
+
+/* Styles the close link, adds the slide down transition */
+
+a.lightbox-close {
+display: block;
+width:50px;
+height:50px;
+box-sizing: border-box;
+background: white;
+color: black;
+text-decoration: none;
+position: absolute;
+top: -80px;
+right: 0;
+-webkit-transition: .5s ease-in-out;
+-moz-transition: .5s ease-in-out;
+-o-transition: .5s ease-in-out;
+transition: .5s ease-in-out;
+}
+
+/* Provides part of the "X" to eliminate an image from the close link */
+
+a.lightbox-close:before {
+content: "";
+display: block;
+height: 30px;
+width: 1px;
+background: black;
+position: absolute;
+left: 26px;
+top:10px;
+-webkit-transform:rotate(45deg);
+-moz-transform:rotate(45deg);
+-o-transform:rotate(45deg);
+transform:rotate(45deg);
+}
+
+/* Provides part of the "X" to eliminate an image from the close link */
+
+a.lightbox-close:after {
+content: "";
+display: block;
+height: 30px;
+width: 1px;
+background: black;
+position: absolute;
+left: 26px;
+top:10px;
+-webkit-transform:rotate(-45deg);
+-moz-transform:rotate(-45deg);
+-o-transform:rotate(-45deg);
+transform:rotate(-45deg);
+}
+
+/* Uses the :target pseudo-class to perform the animations upon clicking the .lightbox-target anchor */
+
+.lightbox-target:target {
+opacity: 1;
+top: 0;
+bottom: 0;
+}
+
+.lightbox-target:target img {
+max-height: 100%;
+max-width: 100%;
+}
+
+.lightbox-target:target a.lightbox-close {
+top: 0px;
+}
+.hide{
+  position: relative;
+  z-index: -1;
+}
+.boom{
+  position: absolute;
 }

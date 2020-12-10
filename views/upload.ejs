@@ -30,7 +30,7 @@
     <%- include("partials/header"); -%>
     <h1>To Upload Image on mongoDB</h1>
     <hr />
-    <div>
+    <div class=" card-block">
       <form action="/dashboard/imagehandle" method="POST" enctype="multipart/form-data">
         <div>
           <label for="title">Image Title</label>
@@ -69,14 +69,15 @@
         </div>
         <div>
           <label for="image">Upload Image</label>
-          <input type="file" id="image" name="image" value="" required />
+          <input type="file" id="image" name="image" value="" class = "btn btn-secondary" required />
         </div>
-        <center>
+        
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" class = "btn btn-secondary" style="
+          margin: 30px">Submit</button>
         </div>
-      </center>
       </form>
     </div>
+  
   </body>
 </html>

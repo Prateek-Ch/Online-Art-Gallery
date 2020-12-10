@@ -9,30 +9,50 @@
         <link rel="stylesheet" href="css/styles.css">
         <style>
           h1{
-            padding-left: 500px;
             padding-top: 20px;
             margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+          }
+          h3{
+            text-align: center;
           }
           .btn{
+            position:fixed;
+            bottom: 20px;
+            width:20%;
+
+            align-items: center;
             text-decoration: none;
+            left:800px;
+            background-color: #182752;
+            margin:0 auto;
+
           }
           a:not([href]):hover{
             color: white;
+          }
+          .blog{
+            background-color: grey;
+            width:1000px;
+            height: 1000px;
+            margin: 0 auto;
+            padding:5px;
           }
         </style>
   </head>
   <body>
       <%- include('partials/header'); -%>
 
-      <h1>Our Blogs!</h1>
-      <h3>Here are our latest Blogs!</h3>
+      <h1>BLOG SECTION</h1>
+      <h3>Check out our latest Blogs!</h3>
 
   <%  posts.forEach(function(post){ %>
     <div class="container">
       <div class="row">
         <% post.forEach(function(post) { %>
         <div class="col-sm-4 d-flex pb-3">
-              <div class="card card-inverse card-primary">
+              <div class="card card-inverse bg-dark card-primary">
                   <div class="card-block">
                       <h3 class="card-title"><%=post.title%></h3>
                       <p class="card-text"><%=post.content.substring(0, 100) + " ..."%></p>
@@ -45,7 +65,7 @@
     </div>
     <% }) %>
 
-   <a href="/blog/compose" type="button" class="btn btn-secondary btn-lg btn-block" >Would you like to Post?</a>
+   <a href="/blog/compose" type="button" class="btn btn-secondary btn-lg" >Publish a blog of your own!</a>
 
   </body>
 </html>
